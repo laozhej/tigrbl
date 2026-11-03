@@ -164,3 +164,7 @@ This README is the package-local distribution entry point for `tigrbl-runtime`. 
 ## License
 
 Licensed under the Apache License, Version 2.0. See `LICENSE`, `NOTICE`, and the official [Apache 2.0 license text](https://www.apache.org/licenses/LICENSE-2.0).
+
+## Lowering integration
+
+`lowering_services` lazily exposes canonical kernel operation-view compilation and WebSocket JSON-RPC session construction to concrete integration code. It preserves the kernel function objects and keeps kernel imports out of concrete authoring modules.

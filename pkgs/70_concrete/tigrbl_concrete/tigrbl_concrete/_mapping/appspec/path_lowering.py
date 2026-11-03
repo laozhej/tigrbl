@@ -178,7 +178,7 @@ def _lower_router_paths(router: Any, router_spec: Any) -> None:
         from tigrbl_concrete.system.docs.runtime_ops import (
             register_runtime_websocket_route,
         )
-        from tigrbl_kernel.protocol_chains.websocket import (
+        from tigrbl_concrete._runtime_services import (
             build_websocket_jsonrpc_session_handler,
         )
 

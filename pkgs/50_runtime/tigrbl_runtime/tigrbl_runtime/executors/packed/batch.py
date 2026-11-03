@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from ._shared import *
+from ...channel._asgi_jsonrpc import _jsonrpc_error_payload
 
 
 class _PackedBatchMixin:
@@ -210,15 +211,7 @@ class _PackedBatchMixin:
 
         rpc_code = _HTTP_TO_RPC.get(int(status_code), -32603)
         data = dict(detail) if isinstance(detail, Mapping) else {"detail": detail}
-        return {
-            "jsonrpc": "2.0",
-            "error": {
-                "code": rpc_code,
-                "message": ERROR_MESSAGES.get(rpc_code, "Internal error"),
-                "data": data,
-            },
-            "id": rpc_id,
-        }
+        return _jsonrpc_error_payload(rpc_code, ERROR_MESSAGES.get(rpc_code, 'Internal error'), rpc_id, data=data)
 
     @staticmethod
     def _reject_jsonrpc_wrapper_keys(
@@ -273,11 +266,7 @@ class _PackedBatchMixin:
         for item in batch_payload:
             if not isinstance(item, Mapping):
                 responses.append(
-                    {
-                        "jsonrpc": "2.0",
-                        "error": {"code": -32600, "message": "Invalid Request"},
-                        "id": None,
-                    }
+                    _jsonrpc_error_payload(-32600, 'Invalid Request', None)
                 )
                 continue
 
@@ -285,25 +274,13 @@ class _PackedBatchMixin:
             method = item.get("method")
             if not isinstance(method, str):
                 responses.append(
-                    {
-                        "jsonrpc": "2.0",
-                        "error": {"code": -32601, "message": "Method not found"},
-                        "id": rpc_id,
-                    }
+                    _jsonrpc_error_payload(-32601, 'Method not found', rpc_id)
                 )
                 continue
 
             if not callable(router_or_app) or not scope:
                 responses.append(
-                    {
-                        "jsonrpc": "2.0",
-                        "error": {
-                            "code": -32603,
-                            "message": "Internal error",
-                            "data": {"detail": "RPC invoker unavailable."},
-                        },
-                        "id": rpc_id,
-                    }
+                    _jsonrpc_error_payload(-32603, 'Internal error', rpc_id, data={'detail': 'RPC invoker unavailable.'})
                 )
                 continue
 
@@ -323,15 +300,7 @@ class _PackedBatchMixin:
                 await router_or_app(dict(scope), _receive, _send)
             except Exception as exc:
                 responses.append(
-                    {
-                        "jsonrpc": "2.0",
-                        "error": {
-                            "code": -32603,
-                            "message": "Internal error",
-                            "data": {"detail": str(exc)},
-                        },
-                        "id": rpc_id,
-                    }
+                    _jsonrpc_error_payload(-32603, 'Internal error', rpc_id, data={'detail': str(exc)})
                 )
                 continue
 
@@ -349,15 +318,7 @@ class _PackedBatchMixin:
             try:
                 decoded = json.loads(response_body.decode("utf-8"))
             except Exception:
-                decoded = {
-                    "jsonrpc": "2.0",
-                    "error": {
-                        "code": -32603,
-                        "message": "Internal error",
-                        "data": {"detail": response_body.decode("utf-8", errors="replace")},
-                    },
-                    "id": rpc_id,
-                }
+                decoded = _jsonrpc_error_payload(-32603, 'Internal error', rpc_id, data={'detail': response_body.decode('utf-8', errors='replace')})
             if isinstance(decoded, Mapping):
                 response = dict(decoded)
                 if response.get("id") is None:

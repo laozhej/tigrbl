@@ -36,3 +36,14 @@ def _resolve_jsonrpc_endpoint(ctx: Any, channel: OpChannel) -> str | None:
         if path == _normalize_path(mapped_path):
             return endpoint
     return None
+
+
+_NO_ERROR_DATA = object()
+
+
+def _jsonrpc_error_payload(code: int, message: str, request_id: Any, *, data: Any = _NO_ERROR_DATA) -> dict[str, Any]:
+    """Construct the existing compatibility error envelope without choosing policy."""
+    error: dict[str, Any] = {"code": code, "message": message}
+    if data is not _NO_ERROR_DATA:
+        error["data"] = data
+    return {"jsonrpc": "2.0", "error": error, "id": request_id}

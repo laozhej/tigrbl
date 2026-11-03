@@ -6,7 +6,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[4]
 VALIDATOR = ROOT / "tools" / "ci" / "validate_runtime_boundary.py"
-BOUNDARY = ROOT / "pkgs" / "core" / "tigrbl_runtime" / "BOUNDARY.yaml"
+BOUNDARY = Path(__file__).resolve().parents[1] / "BOUNDARY.yaml"
 
 
 def _load_validator():

@@ -22,3 +22,22 @@ def test_runtime_executor_methods_remain_runtime_owned() -> None:
     assert _run_phase_chain.__module__ == "tigrbl_runtime.executors.kernel_executor"
     assert invoke_op.__module__ == "tigrbl_runtime.executors.kernel_executor"
     assert resolve_phase_chains.__module__ == "tigrbl_runtime.executors.kernel_executor"
+
+
+def test_lowering_services_preserve_kernel_function_identity() -> None:
+    from tigrbl_runtime.lowering_services import (
+        compile_opview_from_specs,
+        build_websocket_jsonrpc_session_handler,
+    )
+    from tigrbl_kernel.opview_compiler import compile_opview_from_specs as compile_owner
+    from tigrbl_kernel.protocol_chains.websocket import build_websocket_jsonrpc_session_handler as websocket_owner
+
+    assert compile_opview_from_specs is compile_owner
+    assert build_websocket_jsonrpc_session_handler is websocket_owner
+
+
+def test_lowering_services_reject_unknown_names() -> None:
+    from tigrbl_runtime import lowering_services
+
+    with pytest.raises(AttributeError):
+        getattr(lowering_services, "unknown_lowering_service")

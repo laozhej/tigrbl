@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from ._shared import *
+from ...channel._asgi_jsonrpc import _jsonrpc_error_payload
 
 
 class _PackedExecuteMixin:
@@ -86,28 +87,13 @@ class _PackedExecuteMixin:
             wt_selection = temp.get("webtransport_selection")
             disposition = getattr(wt_selection, "disposition", None)
             rpc_envelope = getattr(wt_selection, "rpc_envelope", None)
-            if disposition == "lifecycle":
-                await _send_transport_response(env, ctx)
-                return
             if disposition in {"method_not_found", "invalid_jsonrpc"}:
-                ctx.result = {
-                    "jsonrpc": "2.0",
-                    "error": {
-                        "code": -32601 if disposition == "method_not_found" else -32600,
-                        "message": (
-                            "Method not found"
-                            if disposition == "method_not_found"
-                            else "Invalid Request"
-                        ),
-                    },
-                    "id": rpc_envelope.get("id")
-                    if isinstance(rpc_envelope, Mapping)
-                    else None,
-                }
-                await _send_transport_response(env, ctx)
-                return
-            transport = hot.egress_transport_response
-            if isinstance(transport, dict):
+                ctx.result = _jsonrpc_error_payload(
+                    -32601 if disposition == "method_not_found" else -32600,
+                    "Method not found" if disposition == "method_not_found" else "Invalid Request",
+                    rpc_envelope.get("id") if isinstance(rpc_envelope, Mapping) else None,
+                )
+            if disposition in {"lifecycle", "method_not_found", "invalid_jsonrpc"} or isinstance(hot.egress_transport_response, dict):
                 await _send_transport_response(env, ctx)
                 return
 

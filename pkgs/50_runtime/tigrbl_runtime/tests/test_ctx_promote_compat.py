@@ -3,6 +3,7 @@ from __future__ import annotations
 from pathlib import Path
 import re
 
+import tigrbl_atoms
 from tigrbl_atoms import types as atom_types
 from tigrbl_runtime.executors.types import _Ctx
 
@@ -12,7 +13,7 @@ _PROMOTE_TARGET_RE = re.compile(r"ctx\.promote\((\w+)")
 
 def _discover_promote_targets() -> set[str]:
     atoms_root = (
-        Path(__file__).resolve().parents[2] / "tigrbl_atoms" / "tigrbl_atoms" / "atoms"
+        Path(tigrbl_atoms.__file__).resolve().parent / "atoms"
     )
     targets: set[str] = set()
     for py_file in atoms_root.rglob("*.py"):
