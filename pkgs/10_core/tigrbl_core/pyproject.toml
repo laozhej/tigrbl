@@ -75,5 +75,6 @@ packages = [
 [dependency-groups]
 dev = [
     "pytest>=8.0",
+    "sqlalchemy>=2.0",
     "ruff>=0.9",
 ]

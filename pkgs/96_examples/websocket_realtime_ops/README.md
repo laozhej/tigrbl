@@ -133,3 +133,7 @@ or discuss usage on [Discord](https://discord.gg/K4YTAPapjR).
 [Apache 2.0](LICENSE). See [NOTICE](NOTICE) for attribution.
 
 ![License](https://img.shields.io/badge/license-Apache%202.0-525252)
+
+## Workspace documentation
+
+This README is the package-local distribution entry point. See [workspace documentation](../../../docs/README.md), [current conformance target](../../../docs/conformance/CURRENT_TARGET.md), [package catalog](../../../docs/developer/PACKAGE_CATALOG.md), [package layout](../../../docs/developer/PACKAGE_LAYOUT.md), and [SSOT registry](../../../.ssot/registry.json).

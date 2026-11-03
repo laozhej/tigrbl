@@ -26,6 +26,7 @@ max_python_file_loc: 400
 frozen_module_tree: true
 
 allowed_runtime_files:
+  - lowering_services.py
   - __init__.py
   - callbacks.py
   - channel/__init__.py
@@ -64,6 +65,7 @@ allowed_runtime_files:
   - executors/packed/input_extract.py
   - executors/packed/request_select.py
   - executors/packed/route_select.py
+  - executors/packed/route_select_websocket.py
   - executors/packed/runner_resolve.py
   - executors/packed/segments.py
   - executors/phase.py

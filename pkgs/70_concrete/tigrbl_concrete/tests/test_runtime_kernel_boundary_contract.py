@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import ast
 import importlib.metadata
+import re
 from pathlib import Path
 
 PACKAGE_ROOT = Path(__file__).resolve().parents[1]
@@ -33,13 +34,13 @@ def test_concrete_package_keeps_kernel_imports_out_of_all_modules() -> None:
 def test_concrete_declares_runtime_dependency_without_kernel_dependency() -> None:
     text = PYPROJECT.read_text(encoding="utf-8")
 
-    assert '"tigrbl-runtime"' in text
+    assert '"tigrbl-runtime>=0.4.5.dev5"' in text
     assert '"tigrbl-kernel"' not in text
 
 
 def test_installed_concrete_distribution_metadata_omits_kernel_dependency() -> None:
     requirements = importlib.metadata.requires("tigrbl-concrete") or []
-    normalized = {req.split(maxsplit=1)[0].split(";", maxsplit=1)[0] for req in requirements}
+    normalized = {re.split(r"[<>=!~; \[]", req, maxsplit=1)[0] for req in requirements}
 
     assert "tigrbl-runtime" in normalized
     assert "tigrbl-kernel" not in normalized
@@ -82,3 +83,10 @@ def test_camelcase_define_make_derive_authoring_surfaces_are_not_runtime_owned()
                     )
 
     assert runtime_exports == []
+
+
+def test_concrete_lowering_services_reuse_declared_runtime_bridge() -> None:
+    from tigrbl_concrete._runtime_services import compile_opview_from_specs
+    from tigrbl_runtime.lowering_services import compile_opview_from_specs as runtime_compile
+
+    assert compile_opview_from_specs is runtime_compile

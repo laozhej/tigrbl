@@ -16,15 +16,18 @@ from tigrbl_core.schema import (
 
 REPO_ROOT = Path(__file__).resolve().parents[4]
 MATRIX_PATH = REPO_ROOT / "docs" / "spec-surface-matrix.md"
-SCHEMA_ROOT = REPO_ROOT / "pkgs" / "core" / "tigrbl_core" / "schemas"
+PACKAGE_ROOT = Path(__file__).resolve().parents[1]
+SCHEMA_ROOT = PACKAGE_ROOT / "schemas"
 REGISTRY_PATH = REPO_ROOT / ".ssot" / "registry.json"
 
 
 def _matrix_signatures() -> set[tuple[str, ...]]:
     signatures: set[tuple[str, ...]] = set()
-    for line in MATRIX_PATH.read_text(encoding="utf-8").splitlines():
-        if not line.startswith("| `") and not line.startswith("| missing"):
-            continue
+    lines = MATRIX_PATH.read_text(encoding="utf-8").splitlines()
+    start = next(index + 2 for index, line in enumerate(lines) if line.startswith("| Spec | JSON schema |"))
+    for line in lines[start:]:
+        if not line.startswith("|"):
+            break
         cells = tuple(part.strip() for part in line.strip().strip("|").split("|"))
         assert len(cells) == len(MATRIX_COLUMNS), line
         signatures.add(cells)
@@ -83,7 +86,7 @@ def test_surface_provenance_inventory_t1_resolves_declared_json_schema_artifacts
     if schema_cell == "generated":
         assert (SCHEMA_ROOT / f"{spec}.json").is_file()
     elif schema_cell.startswith("schemas/"):
-        assert (REPO_ROOT / "pkgs" / "core" / "tigrbl_core" / schema_cell).is_file()
+        assert (PACKAGE_ROOT / schema_cell).is_file()
 
 
 @pytest.mark.parametrize("row", load_surface_provenance_inventory(), ids=lambda row: row.id)

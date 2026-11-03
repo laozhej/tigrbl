@@ -116,3 +116,7 @@ The package is implemented with package-local behavioral tests. Certification re
 ## License
 
 Licensed under the Apache License, Version 2.0. See `LICENSE` and `NOTICE`.
+
+## Workspace documentation
+
+This README is the package-local distribution entry point. See [workspace documentation](../../../docs/README.md), [current conformance target](../../../docs/conformance/CURRENT_TARGET.md), [package catalog](../../../docs/developer/PACKAGE_CATALOG.md), [package layout](../../../docs/developer/PACKAGE_LAYOUT.md), and [SSOT registry](../../../.ssot/registry.json).

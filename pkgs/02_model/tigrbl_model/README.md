@@ -13,7 +13,7 @@
 
 ## Why use tigrbl_model?
 
-Use it when code needs the Pydantic v2 surface certified for Tigrbl without taking a runtime dependency on Pydantic.
+Use it when code needs the Pydantic v2 surface validated by the package tests for Tigrbl without taking a runtime dependency on Pydantic.
 
 ## When should I install tigrbl_model?
 
@@ -65,7 +65,7 @@ pip install tigrbl-model
 
 ## Public API and Import Surface
 
-The primary imports are `Model`/`BaseModel`, `RootModel`, `Field`, `ConfigDict`, `ValidationError`, `create_model`, `field_validator`, `model_validator`, and the four serialization mixins. See `tigrbl_model.__all__` for the complete certified surface.
+The primary imports are `Model`/`BaseModel`, `RootModel`, `Field`, `ConfigDict`, `ValidationError`, `create_model`, `field_validator`, `model_validator`, and the four serialization mixins. See `tigrbl_model.__all__` for the complete supported surface.
 
 ## Usage Examples
 
@@ -97,7 +97,7 @@ Choose `tigrbl_model` for the focused model and serialization boundary. Choose t
 
 ## Documentation Links
 
-- [Certified parity boundary](PARITY.md)
+- [Supported parity boundary](PARITY.md)
 - [Workspace documentation](https://github.com/tigrbl/tigrbl/blob/master/docs/README.md)
 - [Package catalog](https://github.com/tigrbl/tigrbl/blob/master/docs/developer/PACKAGE_CATALOG.md)
 - [SSOT registry](https://github.com/tigrbl/tigrbl/blob/master/.ssot/registry.json)
@@ -115,3 +115,7 @@ The package's automated suite compares the supported contract with Pydantic v2 a
 ## License
 
 Licensed under the Apache License, Version 2.0. See `LICENSE` and `NOTICE`.
+
+## Workspace documentation
+
+This README is the package-local distribution entry point. See [workspace documentation](../../../docs/README.md), [current conformance target](../../../docs/conformance/CURRENT_TARGET.md), [package catalog](../../../docs/developer/PACKAGE_CATALOG.md), [package layout](../../../docs/developer/PACKAGE_LAYOUT.md), and [SSOT registry](../../../.ssot/registry.json).

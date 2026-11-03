@@ -55,34 +55,34 @@ Source inputs: `pkgs/90_engines/*/pyproject.toml`.
 
 | Package | Engine entry points | Import root | Repository path |
 | --- | --- | --- | --- |
-| `tigrbl_engine_bigquery` | `bigquery` | `tigrbl_engine_bigquery` | `pkgs/90_engines/tigrbl_engine_bigquery` |
-| `tigrbl_engine_clickhouse` | `clickhouse` | `tigrbl_engine_clickhouse` | `pkgs/90_engines/tigrbl_engine_clickhouse` |
-| `tigrbl_engine_csv` | `csv` | `tigrbl_engine_csv` | `pkgs/90_engines/tigrbl_engine_csv` |
-| `tigrbl_engine_dataframe` | `dataframe` | `tigrbl_engine_dataframe` | `pkgs/90_engines/tigrbl_engine_dataframe` |
-| `tigrbl_engine_duckdb` | `duckdb` | `tigrbl_engine_duckdb` | `pkgs/90_engines/tigrbl_engine_duckdb` |
-| `tigrbl_engine_inmemcache` | `inmemcache` | `tigrbl_engine_inmemcache` | `pkgs/90_engines/tigrbl_engine_inmemcache` |
-| `tigrbl_engine_inmemory` | `inmemory` | `tigrbl_engine_inmemory` | `pkgs/90_engines/tigrbl_engine_inmemory` |
-| `tigrbl_engine_membloom` | `membloom` | `tigrbl_engine_membloom` | `pkgs/90_engines/tigrbl_engine_membloom` |
-| `tigrbl_engine_memdedupe` | `memdedupe` | `tigrbl_engine_memdedupe` | `pkgs/90_engines/tigrbl_engine_memdedupe` |
-| `tigrbl_engine_memkv` | `memkv` | `tigrbl_engine_memkv` | `pkgs/90_engines/tigrbl_engine_memkv` |
-| `tigrbl_engine_memlru` | `memlru` | `tigrbl_engine_memlru` | `pkgs/90_engines/tigrbl_engine_memlru` |
-| `tigrbl_engine_mempubsub` | `mempubsub` | `tigrbl_engine_mempubsub` | `pkgs/90_engines/tigrbl_engine_mempubsub` |
-| `tigrbl_engine_memqueue` | `memqueue` | `tigrbl_engine_memqueue` | `pkgs/90_engines/tigrbl_engine_memqueue` |
-| `tigrbl_engine_memrate` | `memrate` | `tigrbl_engine_memrate` | `pkgs/90_engines/tigrbl_engine_memrate` |
-| `tigrbl_engine_mariadb` | `mariadb` (plus `mysql` compatibility) | `tigrbl_engine_mariadb` | `pkgs/90_engines/tigrbl_engine_mariadb` |
-| `tigrbl_engine_numpy` | `numpy` | `tigrbl_engine_numpy` | `pkgs/90_engines/tigrbl_engine_numpy` |
-| `tigrbl_engine_pandas` | `pandas` | `tigrbl_engine_pandas` | `pkgs/90_engines/tigrbl_engine_pandas` |
-| `tigrbl_engine_pgsqli_wal` | `pgsqli_wal` | `tigrbl_engine_pgsqli_wal` | `pkgs/90_engines/tigrbl_engine_pgsqli_wal` |
-| `tigrbl_engine_postgres` | `postgres` | `tigrbl_engine_postgres` | `pkgs/90_engines/tigrbl_engine_postgres` |
-| `tigrbl_engine_pyspark` | `pyspark` | `tigrbl_engine_pyspark` | `pkgs/90_engines/tigrbl_engine_pyspark` |
-| `tigrbl_engine_redis` | `redis` | `tigrbl_engine_redis` | `pkgs/90_engines/tigrbl_engine_redis` |
-| `tigrbl_engine_rediscachethrough` | `rediscachethrough` | `tigrbl_engine_rediscachethrough` | `pkgs/90_engines/tigrbl_engine_rediscachethrough` |
-| `tigrbl_engine_rom` | `rom` | `tigrbl_engine_rom` | `pkgs/90_engines/tigrbl_engine_rom` |
-| `tigrbl_engine_s3` | `s3` | `tigrbl_engine_s3` | `pkgs/90_engines/tigrbl_engine_s3` |
-| `tigrbl_engine_s3fs` | `s3fs` | `tigrbl_engine_s3fs` | `pkgs/90_engines/tigrbl_engine_s3fs` |
-| `tigrbl_engine_snowflake` | `snowflake` | `tigrbl_engine_snowflake` | `pkgs/90_engines/tigrbl_engine_snowflake` |
-| `tigrbl_engine_sqlite` | `sqlite` | `tigrbl_engine_sqlite` | `pkgs/90_engines/tigrbl_engine_sqlite` |
-| `tigrbl_engine_xlsx` | `xlsx` | `tigrbl_engine_xlsx` | `pkgs/90_engines/tigrbl_engine_xlsx` |
+| `tigrbl_engine_bigquery` | none | `tigrbl_engine_bigquery` | `pkgs/90_engines/tigrbl_engine_bigquery` |
+| `tigrbl_engine_clickhouse` | none | `tigrbl_engine_clickhouse` | `pkgs/90_engines/tigrbl_engine_clickhouse` |
+| `tigrbl_engine_csv` | none | `tigrbl_engine_csv` | `pkgs/90_engines/tigrbl_engine_csv` |
+| `tigrbl_engine_dataframe` | none | `tigrbl_engine_dataframe` | `pkgs/90_engines/tigrbl_engine_dataframe` |
+| `tigrbl_engine_duckdb` | none | `tigrbl_engine_duckdb` | `pkgs/90_engines/tigrbl_engine_duckdb` |
+| `tigrbl_engine_inmemcache` | none | `tigrbl_engine_inmemcache` | `pkgs/90_engines/tigrbl_engine_inmemcache` |
+| `tigrbl_engine_inmemory` | none | `tigrbl_engine_inmemory` | `pkgs/90_engines/tigrbl_engine_inmemory` |
+| `tigrbl_engine_mariadb` | none | `tigrbl_engine_mariadb` | `pkgs/90_engines/tigrbl_engine_mariadb` |
+| `tigrbl_engine_membloom` | none | `tigrbl_engine_membloom` | `pkgs/90_engines/tigrbl_engine_membloom` |
+| `tigrbl_engine_memdedupe` | none | `tigrbl_engine_memdedupe` | `pkgs/90_engines/tigrbl_engine_memdedupe` |
+| `tigrbl_engine_memkv` | none | `tigrbl_engine_memkv` | `pkgs/90_engines/tigrbl_engine_memkv` |
+| `tigrbl_engine_memlru` | none | `tigrbl_engine_memlru` | `pkgs/90_engines/tigrbl_engine_memlru` |
+| `tigrbl_engine_mempubsub` | none | `tigrbl_engine_mempubsub` | `pkgs/90_engines/tigrbl_engine_mempubsub` |
+| `tigrbl_engine_memqueue` | none | `tigrbl_engine_memqueue` | `pkgs/90_engines/tigrbl_engine_memqueue` |
+| `tigrbl_engine_memrate` | none | `tigrbl_engine_memrate` | `pkgs/90_engines/tigrbl_engine_memrate` |
+| `tigrbl_engine_numpy` | none | `tigrbl_engine_numpy` | `pkgs/90_engines/tigrbl_engine_numpy` |
+| `tigrbl_engine_pandas` | none | `tigrbl_engine_pandas` | `pkgs/90_engines/tigrbl_engine_pandas` |
+| `tigrbl_engine_pgsqli_wal` | none | `tigrbl_engine_pgsqli_wal` | `pkgs/90_engines/tigrbl_engine_pgsqli_wal` |
+| `tigrbl_engine_postgres` | none | `tigrbl_engine_postgres` | `pkgs/90_engines/tigrbl_engine_postgres` |
+| `tigrbl_engine_pyspark` | none | `tigrbl_engine_pyspark` | `pkgs/90_engines/tigrbl_engine_pyspark` |
+| `tigrbl_engine_redis` | none | `tigrbl_engine_redis` | `pkgs/90_engines/tigrbl_engine_redis` |
+| `tigrbl_engine_rediscachethrough` | none | `tigrbl_engine_rediscachethrough` | `pkgs/90_engines/tigrbl_engine_rediscachethrough` |
+| `tigrbl_engine_rom` | none | `tigrbl_engine_rom` | `pkgs/90_engines/tigrbl_engine_rom` |
+| `tigrbl_engine_s3` | none | `tigrbl_engine_s3` | `pkgs/90_engines/tigrbl_engine_s3` |
+| `tigrbl_engine_s3fs` | none | `tigrbl_engine_s3fs` | `pkgs/90_engines/tigrbl_engine_s3fs` |
+| `tigrbl_engine_snowflake` | none | `tigrbl_engine_snowflake` | `pkgs/90_engines/tigrbl_engine_snowflake` |
+| `tigrbl_engine_sqlite` | none | `tigrbl_engine_sqlite` | `pkgs/90_engines/tigrbl_engine_sqlite` |
+| `tigrbl_engine_xlsx` | none | `tigrbl_engine_xlsx` | `pkgs/90_engines/tigrbl_engine_xlsx` |
 <!-- END GENERATED: equivalence-docs:engine-packages -->
 
 ## Datatype Lowering Matrix
