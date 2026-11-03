@@ -1,0 +1,1 @@
+{"command":"uv run --no-sync python tools/ci/fix_policy_governance.py --mode check","exit_code":0,"kind":"policy-governance-validation","result":"Policy governance validation passed.","source_revision":"4adefe930c3745140ef7ccb09a499e706362f5e0","stdout_sha256":"06fd9e39465cfba8985371db3b41dacec5c24699d0159c5b6b74b920c49fa43b"}
