@@ -1,6 +1,6 @@
 [project]
 name = "tigrbl-atoms"
-version = "0.4.5.dev4"
+version = "0.4.5.dev5"
 description = "Runtime atom package for Tigrbl stages, phases, typed contexts, event anchors, protocol execution, and composable pipeline algebra."
 readme = "README.md"
 license = { file = "LICENSE" }
@@ -55,7 +55,7 @@ dependencies = [
     "tigrbl-ops-olap",
     "tigrbl-ops-realtime",
     "tigrbl-ops-webtransport",
-    "tigrbl-core",
+    "tigrbl-core>=0.4.5.dev6",
     "tigrbl-typing",
     "jinja2>=3.1",
     "sqlalchemy>=2.0",
@@ -71,6 +71,7 @@ Repository = "https://github.com/tigrbl/tigrbl/tree/master/pkgs/40_atoms/tigrbl_
 Issues = "https://github.com/tigrbl/tigrbl/issues"
 
 [tool.uv.sources]
+"tigrbl-kernel" = { workspace = true }
 "tigrbl-ops-oltp" = { workspace = true }
 "tigrbl-ops-olap" = { workspace = true }
 "tigrbl-ops-realtime" = { workspace = true }
@@ -90,6 +91,7 @@ packages = [
 
 [dependency-groups]
 dev = [
+    "tigrbl-kernel",
     "pytest>=8.0",
     "pytest-asyncio>=0.24.0",
     "pytest-timeout>=2.3.1",

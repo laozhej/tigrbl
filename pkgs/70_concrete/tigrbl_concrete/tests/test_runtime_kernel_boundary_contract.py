@@ -34,7 +34,7 @@ def test_concrete_package_keeps_kernel_imports_out_of_all_modules() -> None:
 def test_concrete_declares_runtime_dependency_without_kernel_dependency() -> None:
     text = PYPROJECT.read_text(encoding="utf-8")
 
-    assert '"tigrbl-runtime>=0.4.5.dev5"' in text
+    assert '"tigrbl-runtime>=0.4.5.dev7"' in text
     assert '"tigrbl-kernel"' not in text
 
 

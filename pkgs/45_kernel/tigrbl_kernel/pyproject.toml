@@ -1,6 +1,6 @@
 [project]
 name = "tigrbl-kernel"
-version = "0.4.5.dev4"
+version = "0.4.5.dev5"
 description = "Kernel orchestration for composing Tigrbl runtime plans, bindings, operation dispatch, and optimized ASGI execution."
 readme = "README.md"
 license = { file = "LICENSE" }
@@ -42,8 +42,8 @@ authors = [{ name = "Jacob Stewart", email = "jacob@swarmauri.com" }]
 
 dependencies = [
     "tigrbl-typing",
-    "tigrbl-atoms",
-    "tigrbl-core",
+    "tigrbl-atoms>=0.4.5.dev5",
+    "tigrbl-core>=0.4.5.dev6",
 ]
 
 

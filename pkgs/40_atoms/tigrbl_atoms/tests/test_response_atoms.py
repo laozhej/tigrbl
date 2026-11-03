@@ -3,7 +3,8 @@ from __future__ import annotations
 import asyncio
 from types import SimpleNamespace
 
-from sqlalchemy.exc import IntegrityError
+import pytest
+from sqlalchemy.exc import DatabaseError, IntegrityError
 
 from tigrbl_atoms.atoms.response import REGISTRY
 from tigrbl_atoms.atoms.response import (
@@ -109,8 +110,9 @@ def test_error_to_transport_writes_standard_error_payload() -> None:
     assert tr["body"]["detail"] == "<class 'ValueError'>: boom"
 
 
-def test_error_to_transport_sanitizes_persistence_errors() -> None:
-    raw = IntegrityError(
+@pytest.mark.parametrize("error_type,status,detail", [(IntegrityError, 409, "Conflict"), (DatabaseError, 500, "Internal error")])
+def test_error_to_transport_sanitizes_persistence_errors(error_type, status, detail) -> None:
+    raw = error_type(
         "INSERT INTO secret_table (name) VALUES (?)",
         ("secret-bound-value",),
         Exception("sqlite3 raw failure"),
@@ -121,9 +123,9 @@ def test_error_to_transport_sanitizes_persistence_errors() -> None:
 
     tr = ctx.temp["egress"]["transport_response"]
     text = str(tr).lower()
-    assert tr["status_code"] == 500
+    assert tr["status_code"] == status
     assert tr["headers"]["content-type"] == "application/json"
-    assert tr["body"] == {"detail": "Internal error"}
+    assert tr["body"] == {"detail": detail}
     for forbidden in (
         "sqlalchemy",
         "sqlite3",

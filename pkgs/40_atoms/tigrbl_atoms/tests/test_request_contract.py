@@ -28,17 +28,11 @@ def _class_members(path: Path, class_name: str) -> tuple[set[str], set[str]]:
 
 
 def test_atoms_request_contract_matches_request_spec_shape() -> None:
-    packages_root = Path(__file__).resolve().parents[3]
-    request_spec_path = (
-        packages_root
-        / "core"
-        / "tigrbl_core"
-        / "tigrbl_core"
-        / "_spec"
-        / "request_spec.py"
-    )
+    from importlib.util import find_spec
+
+    request_spec_path = Path(find_spec("tigrbl_core._spec.request_spec").origin)
     assert request_spec_path.exists(), (
-        "tigrbl_core request spec source must exist in workspace"
+        "installed tigrbl_core request spec source must exist"
     )
 
     spec_methods, spec_properties = _class_members(request_spec_path, "RequestSpec")

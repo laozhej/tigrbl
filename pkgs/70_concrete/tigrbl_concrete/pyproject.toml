@@ -1,6 +1,6 @@
 [project]
 name = "tigrbl-concrete"
-version = "0.4.5.dev6"
+version = "0.4.5.dev7"
 description = "Concrete Tigrbl implementations for reusable framework behavior, sessions, routes, responses, and base abstraction adapters."
 readme = "README.md"
 license = { file = "LICENSE" }
@@ -44,14 +44,14 @@ dependencies = [
     "orjson",
     "pydantic>=2.0",
     "sqlalchemy",
-    "tigrbl-atoms",
-    "tigrbl-base",
-    "tigrbl-core",
+    "tigrbl-atoms>=0.4.5.dev5",
+    "tigrbl-base>=0.4.5.dev6",
+    "tigrbl-core>=0.4.5.dev6",
     "tigrbl-ops-olap",
     "tigrbl-ops-oltp",
     "tigrbl-ops-realtime",
     "tigrbl-ops-webtransport",
-    "tigrbl-runtime>=0.4.5.dev5",
+    "tigrbl-runtime>=0.4.5.dev7",
     "tigrbl-typing",
     "uvicorn",
 ]

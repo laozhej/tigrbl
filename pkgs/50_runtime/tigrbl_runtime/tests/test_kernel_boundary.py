@@ -41,3 +41,19 @@ def test_lowering_services_reject_unknown_names() -> None:
 
     with pytest.raises(AttributeError):
         getattr(lowering_services, "unknown_lowering_service")
+
+
+def test_runtime_requires_published_webtransport_kernel_and_atom_apis():
+    from pathlib import Path
+    try:
+        import tomllib
+    except ModuleNotFoundError:
+        import tomli as tomllib
+    from packaging.requirements import Requirement
+    from packaging.version import Version
+
+    manifest = tomllib.loads((Path(__file__).parents[1] / "pyproject.toml").read_text())
+    requirements = {item.name: item for item in map(Requirement, manifest["project"]["dependencies"])}
+    for name in ("tigrbl-kernel", "tigrbl-atoms"):
+        assert Version("0.4.5.dev4") not in requirements[name].specifier
+        assert Version("0.4.5.dev5") in requirements[name].specifier
