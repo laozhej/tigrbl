@@ -50,6 +50,25 @@ def test_evidence_registry_and_bundle_validators_pass() -> None:
     assert not failures, '\n\n'.join(failures)
 
 
+def test_release_validation_receipts_survive_status_synchronization() -> None:
+    from ssot_registry.api import load_registry
+    from ssot_registry.api.status_sync import sync_automated_statuses
+
+    _, _, registry = load_registry(REPO_ROOT / '.ssot' / 'registry.json')
+    receipts = {
+        'evd:release-repair-policy-governance-check',
+        'evd:published-python-distribution-closure-built-wheels',
+    }
+    evidence = {row['id']: row for row in registry['evidence']}
+    assert all(evidence[receipt]['status'] == 'passed' for receipt in receipts)
+    result = sync_automated_statuses(REPO_ROOT, dry_run=True)
+    assert not [
+        change for change in result['changes']
+        if change['section'] == 'evidence' and change['id'] in receipts
+        and change['after'] != 'passed'
+    ]
+
+
 def test_phase9_evidence_generator_covers_current_claims_with_existing_paths() -> None:
     registry = build_phase9_evidence.build_registry()
     generated_claims = registry['claims']
