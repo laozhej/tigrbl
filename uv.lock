@@ -3894,7 +3894,7 @@ wheels = [
 
 [[package]]
 name = "tigrbl"
-version = "0.4.5.dev5"
+version = "0.4.5.dev7"
 source = { editable = "pkgs/80_facade/tigrbl" }
 dependencies = [
     { name = "aiosqlite" },
@@ -4010,7 +4010,7 @@ dev = [
 
 [[package]]
 name = "tigrbl-atoms"
-version = "0.4.5.dev4"
+version = "0.4.5.dev5"
 source = { editable = "pkgs/40_atoms/tigrbl_atoms" }
 dependencies = [
     { name = "jinja2" },
@@ -4030,6 +4030,7 @@ dev = [
     { name = "pytest-asyncio" },
     { name = "pytest-timeout" },
     { name = "ruff" },
+    { name = "tigrbl-kernel" },
 ]
 
 [package.metadata]
@@ -4051,11 +4052,12 @@ dev = [
     { name = "pytest-asyncio", specifier = ">=0.24.0" },
     { name = "pytest-timeout", specifier = ">=2.3.1" },
     { name = "ruff", specifier = ">=0.9" },
+    { name = "tigrbl-kernel", editable = "pkgs/45_kernel/tigrbl_kernel" },
 ]
 
 [[package]]
 name = "tigrbl-base"
-version = "0.4.5.dev5"
+version = "0.4.5.dev6"
 source = { editable = "pkgs/20_base/tigrbl_base" }
 dependencies = [
     { name = "pydantic" },
@@ -4170,7 +4172,7 @@ dev = [
 
 [[package]]
 name = "tigrbl-concrete"
-version = "0.4.5.dev5"
+version = "0.4.5.dev7"
 source = { editable = "pkgs/70_concrete/tigrbl_concrete" }
 dependencies = [
     { name = "orjson" },
@@ -4221,7 +4223,7 @@ dev = [
 
 [[package]]
 name = "tigrbl-core"
-version = "0.4.5.dev5"
+version = "0.4.5.dev6"
 source = { editable = "pkgs/10_core/tigrbl_core" }
 dependencies = [
     { name = "pydantic" },
@@ -5093,7 +5095,7 @@ dev = [
 
 [[package]]
 name = "tigrbl-kernel"
-version = "0.4.5.dev4"
+version = "0.4.5.dev5"
 source = { editable = "pkgs/45_kernel/tigrbl_kernel" }
 dependencies = [
     { name = "tigrbl-atoms" },
@@ -5323,7 +5325,7 @@ dev = [
 
 [[package]]
 name = "tigrbl-runtime"
-version = "0.4.5.dev5"
+version = "0.4.5.dev7"
 source = { editable = "pkgs/50_runtime/tigrbl_runtime" }
 dependencies = [
     { name = "numba" },

@@ -1,6 +1,6 @@
 [project]
 name = "tigrbl-runtime"
-version = "0.4.5.dev6"
+version = "0.4.5.dev7"
 description = "Execution bridge for compiled Tigrbl kernel plans and narrow runtime context/carrier compatibility."
 readme = "README.md"
 license = { file = "LICENSE" }
@@ -38,10 +38,10 @@ authors = [{ name = "Jacob Stewart", email = "jacob@swarmauri.com" }]
 
 dependencies = [
     "tigrbl-typing",
-    "tigrbl-kernel",
-    "tigrbl-atoms",
-    "tigrbl-base",
-    "tigrbl-core",
+    "tigrbl-kernel>=0.4.5.dev5",
+    "tigrbl-atoms>=0.4.5.dev5",
+    "tigrbl-base>=0.4.5.dev6",
+    "tigrbl-core>=0.4.5.dev6",
     "numba>=0.61.2",
 ]
 

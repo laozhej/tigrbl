@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+from packaging.requirements import Requirement
 
 import tigrbl
 from tigrbl_core._spec.headers_spec import HeadersSpec
@@ -20,7 +21,7 @@ def test_public_facade_depends_on_core_package() -> None:
     )
     dependencies = pyproject["project"]["dependencies"]
 
-    assert "tigrbl-core" in dependencies
+    assert "tigrbl-core" in {Requirement(item).name for item in dependencies}
 
 
 def test_public_facade_reexports_headers_spec_from_core() -> None:
